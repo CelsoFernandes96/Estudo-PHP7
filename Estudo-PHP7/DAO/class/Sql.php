@@ -1,11 +1,11 @@
 <?php 
 
-class Sql extends PDO {
+class Sql {
 
     private $conn;
 
     public function __construct(){
-        $this->conn = new PDO("mysql:host=localhost;dbname=dbphp7", "root", "");
+       $this->conn = new PDO("mysql:dbname=dbphp7;host=localhost", "root", "");
     }
 
     private function setParams($statment, $parameters) {
@@ -32,6 +32,12 @@ class Sql extends PDO {
 
         return $stmt;
 
+    }
+
+    public function select($rawQuery, $params = array()){
+
+        $stmt = $this->query($rawQuery, $params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 
