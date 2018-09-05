@@ -2,12 +2,12 @@
 
 require_once("config.php");
 
-# CARREA SÓ 1 USUÁRIO
+# CARREA Sï¿½ 1 USUï¿½RIO
 // $root = new Usuario();
 // $root->loadById(1);
 // echo $root;
 
-# LISTA DE USUÁRIOS
+# LISTA DE USUï¿½RIOS
 // $lista  = Usuario::getList();
 // echo json_encode($lista);
 
@@ -15,11 +15,15 @@ require_once("config.php");
 // $search = Usuario::search("Celso");
 // echo json_encode($search);
 
-# CARREGA UM USUÁRIO USANDO O LOGIN E A SENHA
-$usuario = new Usuario();
-$usuario->login("root", "123456");
+# CARREGA UM USUï¿½RIO USANDO O LOGIN E A SENHA
+// $usuario = new Usuario();
+// $usuario->login("root", "123456");
 
-echo json_encode($usuario);
+// echo json_encode($usuario);
 
+# INSERT USUARIO
+$aluno = new Usuario("Celso JosÃ©", "123456");
+$aluno->insert();
+echo $aluno;
 
 ?>

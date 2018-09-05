@@ -48,12 +48,7 @@ class Usuario{
 
         if (count($result) > 0) {
 
-            $row = $result[0];
-
-            $this->setIdusuario($row['ID_USUARIO_USU']);
-            $this->setDesLogin($row['ST_DESLOGIN_USU']);
-            $this->setDesSenha($row['ST_DESENHA_USU']);
-            $this->setDtCadastro(new DateTime($row['DT_CADASTRO_USU']));
+            $this->setData($result[0]);
         }
     }
 
@@ -81,16 +76,35 @@ class Usuario{
         ));
 
         if (count($result) > 0) {
-
-            $row = $result[0];
-
-            $this->setIdusuario($row['ID_USUARIO_USU']);
-            $this->setDesLogin($row['ST_DESLOGIN_USU']);
-            $this->setDesSenha($row['ST_DESENHA_USU']);
-            $this->setDtCadastro(new DateTime($row['DT_CADASTRO_USU']));
+            $this->setData($results[0]);
         } else {
-            throw new Exception("Login e/ou senha inválidos");
+            throw new Exception("Login e/ou senha invï¿½lidos");
         }
+    }
+
+    public function insert() {
+
+        $sql = new Sql();
+        $results = $sql->select("CALL SP_USUARIOS_INSERT(:LOGIN, :PASSWORD)", array(
+            "LOGIN" => $this->getDesLogin(),
+            "PASSWORD" => $this->getDesSenha()
+        ));
+
+        if (count($results) > 0) {
+            $this->setData($results[0]);
+        }
+    }
+
+    public function __construct($login = "", $password = "") {
+        $this->setDesLogin($login);
+        $this->setDesSenha($password);
+    }
+
+    public function setData($data) {
+        $this->setIdusuario($data['ID_USUARIO_USU']);
+        $this->setDesLogin($data['ST_DESLOGIN_USU']);
+        $this->setDesSenha($data['ST_DESENHA_USU']);
+        $this->setDtCadastro(new DateTime($data['DT_CADASTRO_USU']));
     }
 
     public function __toString(){
@@ -98,7 +112,7 @@ class Usuario{
             "ID_USUARIO_USU" => $this->getIdusuario(),
             "ST_DESLOGIN_USU" => $this->getDesLogin(),
             "ST_DESENHA_USU" => $this->getDesSenha(),
-            "DT_CADASTRO_USU" => $this->getDtCadastro()->format('d/m/Y H:i:s')
+            // "DT_CADASTRO_USU" => $this->getDtCadastro()->format('d/m/Y H:i:s')
         ));
     }
 }
