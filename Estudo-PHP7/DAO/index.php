@@ -22,8 +22,14 @@ require_once("config.php");
 // echo json_encode($usuario);
 
 # INSERT USUARIO
-$aluno = new Usuario("Celso José", "123456");
-$aluno->insert();
-echo $aluno;
+// $aluno = new Usuario("Celso José", "123456");
+// $aluno->insert();
+// echo $aluno;
+
+# ATUALIZANDO USUARIO
+$usuario = new Usuario();
+$usuario->loadById(1);
+$usuario->update("Professor Celso", "123456");
+echo $usuario;
 
 ?>
