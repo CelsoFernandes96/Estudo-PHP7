@@ -183,7 +183,7 @@ class Tpl {
         $templateName = basename($template);
         $templateBasedir = strpos($template, DIRECTORY_SEPARATOR) ? dirname($template) . DIRECTORY_SEPARATOR : null;
         $templateDirectory = static::$conf['tpl_dir'] . $templateBasedir;
-        $templateFilepath = $templateDirectory . $templateName . '.' . static::$conf['tpl_ext'];
+        $templateFilepath = $templateDirectory ."/". $templateName . '.' . static::$conf['tpl_ext'];
         $parsedTemplateFilepath = static::$conf['cache_dir'] . $templateName . "." . md5($templateDirectory . serialize(static::$conf['checksum'])) . '.rtpl.php';
 
         // if the template doesn't exsist throw an error
