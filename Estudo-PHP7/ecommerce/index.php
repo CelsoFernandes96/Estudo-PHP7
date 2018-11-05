@@ -14,6 +14,7 @@ $app->config('debug', true);
 
 require_once("site.php");
 require_once("admin.php");
+require_once("functions.php");
 
 $app->run();
 
