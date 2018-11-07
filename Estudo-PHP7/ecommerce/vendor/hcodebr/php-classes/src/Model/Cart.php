@@ -207,7 +207,7 @@ class Cart extends Model{
     }
 
     public static function clearMsgError() {
-        $_SESSION[CArt::SESSION_ERROR] = NULL;
+        $_SESSION[Cart::SESSION_ERROR] = NULL;
     }
 
     public function updateFreight() {
